@@ -1,6 +1,10 @@
 let color = "black";
 let click = true;
 
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
 function populateBoard(size) {
     let board = document.querySelector('.board')
     let squares = board.querySelectorAll('div');
@@ -12,6 +16,7 @@ function populateBoard(size) {
     for (let i = 0; i < amount; i++) {
         let square = document.createElement('div');
         square.addEventListener('mouseover', colorSquare);
+        square.addEventListener('mousedown', colorSquare);
         square.style.backgroundColor = "white";
         board.insertAdjacentElement('beforeend', square);
     }
@@ -28,13 +33,12 @@ function changeSize(input) {
     }
 }
 
-function colorSquare() {
-    if (click) {
-        if (color === "random") {
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        } else {
-            this.style.backgroundColor = color;
-        }
+function colorSquare(e) {
+    if (e.type === 'mouseover' && !mouseDown) return
+    if (color === "random") {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    } else {
+        this.style.backgroundColor = color;
     }
 }
 
@@ -47,14 +51,3 @@ function resetBoard() {
     let squares = board.querySelectorAll('div');
     squares.forEach((div) => div.style.backgroundColor = 'white');
 }
-
-document.querySelector('body').addEventListener('click', (e) => {
-    if (e.target.tagName != 'BUTTON') {
-        click = !click;
-        if (click) {
-            document.querySelector(".mode").textContent = "Mode: Coloring";
-        } else {
-            document.querySelector(".mode").textContent = "Mode: Not Coloring";
-        }
-    }
-});
