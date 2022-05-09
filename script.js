@@ -1,18 +1,17 @@
-const container = document.querySelector('.container')
-const btnBlack = document.createElement('button')
-const btnGray = document.createElement('button')
-const btnRGB = document.createElement('button')
-const btnSize = document.createElement('button')
-const buttonsContainer = document.querySelector('buttons')
+function populateBoard(size) {
+    let board = document.querySelector('.board')
+    board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-function createDivs(col, rows) {
-    for (let i = 0; i < (col * rows); i++) {
-        const div = document.createElement('div')
-        div.style.border = '1px solid red'
-        container.style.gridTemplateColumns = `repeat(${col}, ifr)`;
-        container.style.gridTemplateRows = `repeat(${rows}, ifr)`;
-        container.appendChild(div).classList.add('box')
+    for (let i = 0; i < 256; i++) {
+        let square = document.createElement('div')
+        square.style.backgroundColor = 'blue'
+        board.insertAdjacentElement('beforeend', square)
     }
 }
 
-createDivs(16, 16)
+populateBoard(16)
+
+function changeSize(input) {
+    populateBoard(input);
+}
