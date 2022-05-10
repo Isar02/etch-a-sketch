@@ -1,9 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@100;500&display=swap');
+
+:root {
+    --primary-dark: #333;
+    --primary-light: #ededed;
+    --secondary-light: #fefefe;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    font-family: 'Roboto';
+    font-weight: lighter;
+    line-height: 1.6;
+}
+
+h1 {
+    font-family: 'Roboto';
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    font-size: 48px;
+    font-weight: 1000;
+}
+
+button {
+    padding: 10px 20px;
+    border: 1px solid var(--primary-dark);
+    border-radius: 5px;
+}
+
+button.active {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
+
+button {
+    transition: transform 0.1s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+input {
+    margin-top: 16px;
+    height: 32px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 100px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 200px;
+}
+
 .board {
     width: 500px;
     height: 500px;
     display: grid;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .square {
     user-select: none;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1200px) {
+    .content {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 850px) {
+    .content {
+        gap: 50px;
+    }
+
+    .settings {
+        width: 150px;
+        gap: 16px;
+    }
+
+    .size-value {
+        margin-bottom: -4px;
+    }
+
+    .grid {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 650px) {
+    .title {
+        font-size: 50px;
+    }
+
+    .settings {
+        flex-direction: column-reverse;
+    }
+
+    .grid {
+        width: 300px;
+        height: 300px;
+    }
 }
